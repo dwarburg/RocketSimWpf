@@ -1,48 +1,72 @@
-﻿<Window
+<Fluent:RibbonWindow
     x:Class="RocketSimWpf.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Fluent="urn:fluent-ribbon"
     xmlns:monoGameControls="clr-namespace:RocketSimWpf.MonoGameControls"
     xmlns:local="clr-namespace:RocketSimWpf"
     mc:Ignorable="d"
     Title="RocketSimWpf"
-    WindowState="Maximized"
-    WindowStyle="None"
-    ResizeMode="NoResize">
+    Height="768" Width="1024"
+    Style="{DynamicResource {x:Type Fluent:RibbonWindow}}">
     <!--WindowStartupLocation="CenterScreen"
     Width="800"
     Height="480"-->
 
-    <DockPanel LastChildFill="True">
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
-                <MenuItem Header="_New" />
-                <MenuItem Header="_Open..." />
-                <Separator />
-                <MenuItem Header="_Save" />
-                <MenuItem Header="Save _As..." />
-                <Separator />
-                <MenuItem Header="E_xit" />
-            </MenuItem>
-            <MenuItem Header="_Edit">
-                <MenuItem Header="_Undo" />
-                <MenuItem Header="_Redo" />
-                <Separator />
-                <MenuItem Header="Cu_t" />
-                <MenuItem Header="_Copy" />
-                <MenuItem Header="_Paste" />
-                <MenuItem Header="_Delete" />
-                <Separator />
-                <MenuItem Header="Select _All" />
-            </MenuItem>
-            <MenuItem Header="_Help">
-                <MenuItem Header="_About RocketSimWpf" />
-            </MenuItem>
-        </Menu>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Ribbon at the top -->
+        <Fluent:Ribbon Grid.Row="0">
+            <Fluent:Ribbon.Menu>
+                <Fluent:Backstage>
+                    <Fluent:BackstageTabControl>
+                        <Fluent:BackstageTabItem Header="File">
+                            <StackPanel Margin="10" Width="200">
+                                <Fluent:Button Header="New" />
+                                <Fluent:Button Header="Open" />
+                                <Fluent:Button Header="Save" />
+                                <Fluent:Button Header="Save As" />
+                                <Separator />
+                                <Fluent:Button x:Name="ExitButton" Header="Exit" Click="ExitButton_Click" />
+                            </StackPanel>
+                        </Fluent:BackstageTabItem>
+                    </Fluent:BackstageTabControl>
+                </Fluent:Backstage>
+            </Fluent:Ribbon.Menu>
+            
+            <Fluent:RibbonTabItem Header="Home">
+                <Fluent:RibbonGroupBox Header="Simulation">
+                    <Fluent:Button Header="Start" Size="Large" LargeIcon="{x:Null}" />
+                    <Fluent:Button Header="Pause" Size="Large" LargeIcon="{x:Null}" />
+                    <Fluent:Button Header="Reset" Size="Large" LargeIcon="{x:Null}" />
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="View">
+                    <Fluent:Button Header="Zoom In" Size="Large" LargeIcon="{x:Null}" />
+                    <Fluent:Button Header="Zoom Out" Size="Large" LargeIcon="{x:Null}" />
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            
+            <Fluent:RibbonTabItem Header="Settings">
+                <Fluent:RibbonGroupBox Header="Parameters">
+                    <Fluent:Button Header="Configure" Size="Large" LargeIcon="{x:Null}" />
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+            
+            <Fluent:RibbonTabItem Header="Help">
+                <Fluent:RibbonGroupBox Header="Support">
+                    <Fluent:Button Header="About" Size="Large" LargeIcon="{x:Null}" />
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+        </Fluent:Ribbon>
 
-        <Grid>
+        <!-- MonoGame content in the main area -->
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -60,5 +84,5 @@
                 </monoGameControls:MonoGameContentControl.DataContext>
             </monoGameControls:MonoGameContentControl>
         </Grid>
-    </DockPanel>
-</Window>
+    </Grid>
+</Fluent:RibbonWindow>
