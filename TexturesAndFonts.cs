@@ -5,12 +5,12 @@ namespace RocketSim;
 
 public class TexturesAndFonts
 {
-    public Texture2D EarthMapView { get; private set; }
-    public Texture2D EarthSurface { get; private set; }
-    public Texture2D Pixel { get; private set; }
-    public Texture2D Rocket { get; private set; }
-    public Texture2D RocketNoFire { get; private set; }
-    public SpriteFont Font { get; private set; }
+    public Texture2D EarthMapView { get; private set; } = null!;
+    public Texture2D EarthSurface { get; private set; } = null!;
+    public Texture2D Pixel { get; private set; } = null!;
+    public Texture2D Rocket { get; private set; } = null!;
+    public Texture2D RocketNoFire { get; private set; } = null!;
+    public SpriteFont? Font { get; private set; }
     public void LoadTextures(ContentManager content, GraphicsDevice graphicsDevice)
     {
         Rocket = content.Load<Texture2D>("rocket");

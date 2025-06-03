@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
@@ -6,11 +6,14 @@
     <LangVersion>12</LangVersion>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <UseWPF>true</UseWPF>
+    <EnableUnsupportedAssetsForCompatibility>true</EnableUnsupportedAssetsForCompatibility>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+    <!-- Add explicit reference to Libuv to control its version -->
+    <PackageReference Include="Libuv" Version="1.10.0" ExcludeAssets="native" />
   </ItemGroup>
 
   <ItemGroup>
